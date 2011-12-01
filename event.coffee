@@ -1,5 +1,5 @@
 # `mobone.event` provides utilities for handling events.
-mobone.namespace 'mobone.event', (exports) ->
+define 'mobone.event', (exports) ->
   
   # ``Interceptor`` binds to `click` and `submit` events and:
   # 

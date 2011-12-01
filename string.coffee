@@ -1,6 +1,6 @@
 ### String processing and template utilities.
 ###
-mobone.namespace 'mobone.string', (exports) ->
+define 'mobone.string', (exports) ->
   
   String::startsWith = (s) -> @lastIndexOf(s, 0) is 0
   String::endsWith = (s) -> -1 isnt @indexOf s, @length - s.length
