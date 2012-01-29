@@ -2,6 +2,14 @@
 ###
 define 'mobone.string', (exports) ->
   
+  HTML_ENTITIES =
+    '&': '&amp;'
+    '>': '&gt;'
+    '<': '&lt;'
+    '"': '&quot;'
+    "'": '&#39;'
+  
+  String::htmlEscape = -> @replace /[&"'><]/g, (s) -> HTML_ENTITIES[s]
   String::startsWith = (s) -> @lastIndexOf(s, 0) is 0
   String::endsWith = (s) -> -1 isnt @indexOf s, @length - s.length
   String::toTitleCase = -> 
@@ -38,7 +46,7 @@ define 'mobone.string', (exports) ->
     autolink: (s) -> twttr.txt.autoLink s, @options
     
     # Escapes HTML entities.
-    escape: (s) -> twttr.txt.htmlEscape s
+    escape: (s) -> s.htmlEscape()
       
     # Escape, autolink and internationalise.
     process: (s) -> @internationalise @autolink @escape s
@@ -148,5 +156,4 @@ define 'mobone.string', (exports) ->
   exports.template = factory.template
   exports.templateFromId = factory.templateFromId
   
-
 
