@@ -10,7 +10,7 @@ define 'mobone.string', (exports) ->
     "'": '&#39;'
   
   String::htmlEscape = -> @replace /[&"'><]/g, (s) -> HTML_ENTITIES[s]
-  String::startsWith = (s) -> @lastIndexOf(s, 0) is 0
+  String::startsWith = (s) -> @indexOf(s) is 0
   String::endsWith = (s) -> -1 isnt @indexOf s, @length - s.length
   String::toTitleCase = -> 
     @replace /\w\S*/g, (s) -> "#{s.charAt(0).toUpperCase()}#{s.substr(1).toLowerCase()}"
