@@ -46,7 +46,7 @@ define 'mobone.string', (exports) ->
     autolink: (s) -> twttr.txt.autoLink s, @options
     
     # Escapes HTML entities.
-    escape: (s) -> s.htmlEscape()
+    escape: (s) -> s.toString().htmlEscape()
       
     # Escape, autolink and internationalise.
     process: (s) -> @internationalise @autolink @escape s
