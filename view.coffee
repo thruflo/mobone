@@ -35,7 +35,6 @@ define 'mobone.view', (exports) ->
   # attribute to set the `target.attr 'href'` to a relative path.
   class RelativeButton extends Backbone.View
     
-    
     # Bind to `vclick` events.
     events: 
       'vclick': 'handleClick'
@@ -63,11 +62,23 @@ define 'mobone.view', (exports) ->
     
     
   
+  # A widget that can be bound to a logout link that submits a logout form.
+  class LogoutWidget extends Backbone.View
+      events:
+          'click .logout-link': 'logout'
+      
+      logout: =>
+          @$logout_form.submit()
+          false
+      
+      initialize: -> 
+          @$logout_form = $ '.logout-form'
+  
   
   exports.Widget = Widget
   exports.Page = Page
   exports.Dialog = Dialog
   exports.RelativeButton = RelativeButton
+  exports.LogoutWidget = LogoutWidget
   
-
 
