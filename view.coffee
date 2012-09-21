@@ -62,6 +62,26 @@ define 'mobone.view', (exports) ->
     
     
   
+  # Provide `model.view`, ``render()`` and bind widgets to `change` and 
+  # `destroy` events by default.
+  class BaseWidget extends Backbone.View
+      initialize: ->
+          @model.bind 'change', @render
+          @model.bind 'destroy', @remove
+          @model.view = this
+          @render()
+      
+  
+  # Bind listings to `add`, `remove` and `reset` events by default.
+  class BaseListing extends Backbone.View
+      reset: => @collection.each @add
+      initialize: ->
+          @collection.bind 'add', @add
+          @collection.bind 'reset', @reset
+          @collection.bind 'remove', (instance) => instance.view.remove()
+          @collection.each @add
+      
+  
   # A widget that can be bound to a logout link that submits a logout form.
   class LogoutWidget extends Backbone.View
       events:
@@ -79,6 +99,8 @@ define 'mobone.view', (exports) ->
   exports.Page = Page
   exports.Dialog = Dialog
   exports.RelativeButton = RelativeButton
+  exports.BaseWidget = BaseWidget
+  exports.BaseListing = BaseListing
   exports.LogoutWidget = LogoutWidget
   
 
