@@ -74,6 +74,7 @@ define 'mobone.view', (exports) ->
   
   # Bind listings to `add`, `remove` and `reset` events by default.
   class BaseListing extends Backbone.View
+      add: => # noop
       reset: => @collection.each @add
       initialize: ->
           @collection.bind 'add', @add
